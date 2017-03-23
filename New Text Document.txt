@@ -1,0 +1,63 @@
+   protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                // Talent tree //
+                case Keys.N:
+                    if (talentspanel.Visible == false)
+                    {
+                        talentspanel.Visible = true;
+                    }
+                    else
+                    {
+                        talentspanel.Visible = false;
+                    }
+                    return true;
+                // Menu //
+                case Keys.Escape:
+                    if (playing == true)
+                    {
+                        playing = false;
+                        Play_Button.Visible = true;
+                        Options_Button.Visible = true;
+                        Instructions_Button.Visible = true;
+                        
+                    }
+                    else
+                    {
+                        playing = true;
+                        Play_Button.Visible = false;
+                        Options_Button.Visible = false;
+                        Instructions_Button.Visible = false;
+                    }
+                    return true;
+                // Mute //
+                case Keys.M:
+                    if (mute == false)
+                    {
+                        mute = true;
+                        MainMenuMusic.settings.volume = volume * 0;
+                        MainMenuRain.settings.volume = 25;
+                        this.volumebutton25.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Volume_Button25off));
+                        this.volumebutton50.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Volume_Button50off));
+                        this.volumebutton75.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Volume_Button75off));
+                        this.volumebutton100.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Volume_Button25off));
+                        this.volumepercentage.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.volume0));
+                    }
+                    else
+                    {
+                        mute = false;
+                        MainMenuMusic.settings.volume = volume * 0 + 100;
+                        MainMenuRain.settings.volume = volume / 7;
+                        this.volumebutton25.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Volume_Button25));
+                        this.volumebutton50.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Volume_Button50));
+                        this.volumebutton75.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Volume_Button75));
+                        this.volumebutton100.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Volume_Button25));
+                        this.volumepercentage.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.volume100));
+                    }
+                    return true;
+
+                    default:
+                    return base.ProcessCmdKey(ref msg, keyData);
+            }
+        }
